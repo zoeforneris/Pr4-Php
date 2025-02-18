@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <option value="2">2</option>
             </select>
             <br>
-            <label>New value:</label>
+            <label>New  :</label>
             <input type="number" name="valor" required>
             <br><br>
             <button type="submit" name="modify">Modify</button>
