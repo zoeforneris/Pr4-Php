@@ -33,7 +33,6 @@ if (!isset($_SESSION['shopping_list'])) {
 $name = $quantity = $price = "";
 $error = $message = "";
 
-// Agregar o actualizar ítem
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['reset'])) {
         $name = $quantity = $price = "";
@@ -44,13 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         if (!empty($name) && $quantity > 0 && $price > 0) {
             if (isset($_POST['update']) && isset($_SESSION['shopping_list'][$name])) {
-                // Actualizar ítem existente
                 $_SESSION['shopping_list'][$name]['quantity'] = $quantity;
                 $_SESSION['shopping_list'][$name]['price'] = $price;
                 $_SESSION['shopping_list'][$name]['cost'] = $quantity * $price;
                 $message = "Item updated properly.";
             } else {
-                // Agregar nuevo ítem
                 $_SESSION['shopping_list'][$name] = [
                     'quantity' => $quantity,
                     'price' => $price,
@@ -64,14 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Eliminar ítem
 if (isset($_GET['delete'])) {
     $name = $_GET['delete'];
     unset($_SESSION['shopping_list'][$name]);
     $message = "Item deleted properly.";
 }
 
-// Calcular total
 $total_cost = array_sum(array_column($_SESSION['shopping_list'], 'cost'));
 ?>
 
